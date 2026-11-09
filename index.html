@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevIntel Pro | Enterprise Auditor</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+<body>
+    <div class="container">
+        <div id="landing">
+            <div class="hero">
+                <h1>DevIntel Pro</h1>
+                <p style="color:var(--text-dim); letter-spacing: 1px;">Enterprise Developer Intelligence Audit</p>
+            </div>
+            <div class="search-box">
+                <input type="text" id="usernameInput" placeholder="Masukan Username Github">
+                <button onclick="performAudit()">Cari</button>
+            </div>
+            <center><div id="errorMessage" class="error-msg"></div></center>
+        </div>
+    </div>
+    <div id="loading" style="display:none; text-align:center; padding:120px 0;">
+        <i class="fas fa-circle-notch fa-spin fa-4x" style="color:var(--accent)"></i>
+        <p style="letter-spacing:4px; font-size:10px; margin-top:30px; font-weight: 800;">SEDANG MENCARI DATA</p>
+    </div>
+    
+    <div id="dash">
+        <button onclick="location.reload()" style="background:transparent; border:1px solid var(--border); color:white; padding:10px 20px; border-radius:12px; cursor:pointer; margin-bottom:25px; font-size:12px; font-weight: bold;">
+            <i class="fas fa-chevron-left"></i> Kembali
+        </button>
+        
+        <div class="profile-header">
+            <img id="res-img" src="">
+            <div style="flex:1">
+                <span id="res-badge" style="background:var(--premium-gradient); font-size:10px; padding:5px 12px; border-radius:12px; font-weight:900; color: white;"></span>
+                <h2 id="res-name" style="margin:12px 0 5px 0; font-size:36px; font-weight: 800;"></h2>
+                <p id="res-login" style="color:var(--accent); margin:0; font-weight:800; font-size: 18px;"></p>
+                <p id="res-bio" style="font-size:15px; color:var(--text-dim); margin:18px 0; line-height: 1.6;"></p>
+                
+                <div style="margin-top:25px; border-top: 1px solid var(--border); padding-top: 20px;">
+                    <span style="font-size:11px; color:var(--text-dim); font-weight:800; letter-spacing: 1px;">MARKET WORTH ESTIMATION</span>
+                    <div id="res-idr" style="font-size:32px; font-weight:900; color:var(--money); margin-top: 5px;"></div>
+                    <div id="res-usd" style="font-size:18px; color:var(--text-dim); font-weight: 600;"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid-info">
+            <div class="card">
+                <span style="font-size:11px; font-weight:900; color:var(--text-dim); letter-spacing: 1px;">CORE AUDIT METRICS</span>
+                <div class="stat-group">
+                    <div class="stat-item"><b id="s-repo">0</b><span>Repos</span></div>
+                    <div class="stat-item"><b id="s-star">0</b><span>Stars</span></div>
+                    <div class="stat-item"><b id="s-follow">0</b><span>Followers</span></div>
+                </div>
+                <div style="text-align:center; margin-top:40px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.05);">
+                    <div style="font-size:11px; color:var(--text-dim); font-weight: 800; letter-spacing: 2px;">NEURAL SCORE</div>
+                    <div id="res-score" style="font-size:60px; font-weight:900; color:var(--accent); text-shadow: 0 0 20px var(--accent);">0</div>
+                </div>
+            </div>
+            <div class="card">
+                <span style="font-size:11px; font-weight:900; color:var(--text-dim); letter-spacing: 1px;">LANGUAGE DISTRIBUTION</span>
+                <canvas id="skillChart" style="max-height: 230px; margin-top:20px;"></canvas>
+            </div>
+        </div>
+
+        <div class="card" style="margin-top:20px; padding:0; overflow: hidden;">
+            <div style="padding: 20px 25px; font-size: 11px; font-weight: 900; color: var(--text-dim); border-bottom: 1px solid var(--border);">HIGH-VALUE REPOSITORIES</div>
+            <table>
+                <thead>
+                    <tr><th>Project Name</th><th>Main Stack</th><th>Stars</th></tr>
+                </thead>
+                <tbody id="repoBody"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+<body>
+</html>
